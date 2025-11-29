@@ -1,8 +1,8 @@
+// Updated Header component
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Menu, Home, Phone, User, Search, X } from 'lucide-react';
+import { Menu, Home, Phone, User, X, Calendar } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
 import { Sheet, SheetContent, SheetTrigger, SheetClose } from '@/components/ui/sheet';
 import { cn } from '@/lib/utils';
 
@@ -11,10 +11,11 @@ const Header: React.FC = () => {
 
   const navigation = [
     { name: 'Home', href: '#', icon: Home },
-    { name: 'Properties', href: '#properties' },
-    { name: 'About', href: '#about' },
-    { name: 'Contact', href: '#contact', icon: Phone },
-    { name: 'Agents', href: '#agents', icon: User },
+    { name: 'Overview', href: '#properties' },
+    { name: 'Rooms', href: '#rooms' },
+    { name: 'Gallery', href: '#contact', icon: Phone },
+    { name: 'FloorPlan', href: '#agents', icon: User },
+    { name: 'Contact', href: '#agents', icon: User },
   ];
 
   useEffect(() => {
@@ -56,7 +57,7 @@ const Header: React.FC = () => {
               "text-xl font-bold transition-colors duration-300",
               isScrolled ? "text-foreground" : "text-white"
             )}>
-              EstatePro
+              Residem
             </span>
           </motion.div>
 
@@ -83,29 +84,14 @@ const Header: React.FC = () => {
             })}
           </nav>
 
-          {/* Search Bar - Desktop */}
+          {/* Schedule a Visit Button - Desktop */}
           <div className="hidden lg:flex items-center space-x-4">
-            <div className="relative">
-              <Search className={cn(
-                "absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 transition-colors duration-300",
-                isScrolled ? "text-muted-foreground" : "text-white/70"
-              )} />
-              <Input
-                type="text"
-                placeholder="Search properties..."
-                className={cn(
-                  "pl-10 w-64 transition-all duration-300",
-                  isScrolled 
-                    ? "bg-background border-border text-foreground" 
-                    : "bg-white/20 border-white/30 text-white placeholder-white/60"
-                )}
-              />
-            </div>
             <Button 
-              variant={isScrolled ? "default" : "secondary"}
-              className="transition-all duration-300"
+              variant={"default"}
+              className="transition-all duration-300 flex items-center space-x-2"
             >
-              Sign In
+              <Calendar className="h-4 w-4" />
+              <span>Schedule a Visit</span>
             </Button>
           </div>
 
@@ -129,7 +115,7 @@ const Header: React.FC = () => {
                 <div className="flex items-center justify-between border-b pb-4">
                   <div className="flex items-center space-x-2">
                     <Home className="h-8 w-8 text-primary" />
-                    <span className="text-xl font-bold">EstatePro</span>
+                    <span className="text-xl font-bold">Residem</span>
                   </div>
                   <SheetClose asChild>
                     <Button variant="ghost" size="icon">
@@ -158,18 +144,11 @@ const Header: React.FC = () => {
                   </div>
                 </nav>
 
-                {/* Mobile Search */}
+                {/* Mobile Schedule Button */}
                 <div className="border-t pt-6">
-                  <div className="relative mb-4">
-                    <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-                    <Input
-                      type="text"
-                      placeholder="Search properties..."
-                      className="pl-10"
-                    />
-                  </div>
-                  <Button className="w-full">
-                    Sign In
+                  <Button className="w-full flex items-center space-x-2">
+                    <Calendar className="h-4 w-4" />
+                    <span>Schedule a Visit</span>
                   </Button>
                 </div>
               </div>
